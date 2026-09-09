@@ -1,0 +1,71 @@
+# Lab 01 — Amazon S3 Private Object Access
+
+**Author:** DevGarza  
+**Date:** September 8, 2026 (Pacific)  
+**Method:** Guided practice in my own AWS account using the AWS Management Console  
+**Status:** Completed; lab object and bucket deleted
+
+## Goal and learning context
+
+Create my first S3 bucket, upload a text object, compare ordinary URL access with presigned URL access, verify permissions, and remove the resources.
+
+I watched the S3 demonstration in AWS Educate Introduction to Cloud 101, Module 4: AWS Core Services. The instructor demonstrated public sharing through a bucket policy. My hands-on exercise used a private bucket and a presigned URL for temporary access.
+
+## Configuration
+
+| Setting | Value used |
+| --- | --- |
+| Bucket | `devgarza-bucket-lab` |
+| Region | US East (Ohio), `us-east-2` |
+| Bucket type | General purpose |
+| Object Ownership | Bucket owner enforced; ACLs disabled |
+| Block all public access | On |
+| Bucket policy | None |
+| Default encryption | Amazon S3 managed keys, SSE-S3 |
+| Versioning | Disabled |
+| Object key | `s3-practice.txt` |
+| Object size | 38 bytes |
+| Storage class | S3 Standard |
+
+## Work completed
+
+1. Created the bucket and confirmed that it initially contained zero objects.
+2. Uploaded a text file from my computer. The console reported one successful upload and zero failures.
+3. Opened the object's ordinary HTTPS URL in a browser. The response was `AccessDenied`.
+4. Generated a presigned URL through the S3 console and opened it in Chrome Incognito. The file's text displayed successfully.
+5. Rechecked Permissions: Block all public access remained On, with no bucket policy.
+6. Deleted the object. The console confirmed one successful deletion, zero failures, and an empty bucket.
+7. Deleted the bucket and verified the successful deletion message and empty general-purpose bucket list.
+
+## Verification
+
+| Check | Observed result | Evidence |
+| --- | --- | --- |
+| Upload | One object, 38 bytes; zero failures | [Upload confirmation](images/01-object-uploaded.png) |
+| Ordinary URL | `AccessDenied` | [Browser result](images/02-access-denied.png) |
+| Presigned URL | Text displayed in Chrome Incognito | Reviewed during the session; the screenshot is excluded because its address bar contains the signed URL |
+| Permissions after sharing | Public access blocked; no bucket policy | [Permissions](images/03-private-permissions.png) |
+| Object cleanup | One object deleted; zero failures | Console confirmation reviewed during the session |
+| Bucket cleanup | Successful deletion; zero buckets displayed | [Bucket deleted](images/04-bucket-deleted.png) |
+
+The exact presigned URL duration and its eventual expiration were not independently verified.
+
+## What I learned
+
+- An S3 bucket holds objects. The object key for my file was `s3-practice.txt`.
+- Knowing an object's URL does not grant permission to read it. The ordinary request was denied under the private configuration used in this lab.
+- A presigned URL gives time-limited access using the permissions of the identity that generates it. In this exercise, it allowed the object to be read while the bucket's public-access block remained enabled. [AWS presigned URL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html)
+- Uploading a file, verifying access, and cleaning up the resources are all part of completing a lab.
+
+## Reflection
+
+This was my first hands-on S3 bucket in my own AWS account. Seeing the ordinary URL fail and the presigned URL succeed made the difference between an address and authorization concrete. I also practiced checking the final state after deleting both the object and the bucket.
+
+## Review questions
+
+1. Why did the ordinary object URL return `AccessDenied`?
+2. What authorization did the presigned URL provide?
+3. Which screenshot shows that the bucket still blocked public access after sharing?
+4. Why did I empty the bucket before deleting it?
+
+[Back to lab index](../../README.md)
