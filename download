@@ -1,0 +1,15 @@
+# Local credentials and private keys, including accidentally added suffixes
+.aws/
+.ssh/
+.env
+.env.*
+*.pem
+*.pem.*
+*.ppk
+*.key
+credentials
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+*~
