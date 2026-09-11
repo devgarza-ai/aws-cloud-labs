@@ -93,7 +93,7 @@ cat /etc/os-release
 | `hostname` | `ip-172-31-28-136.us-east-2.compute.internal` |
 | `cat /etc/os-release` | `PRETTY_NAME="Amazon Linux 2023.12.20260831"` |
 
-[Successful SSH session and command results](images/02-ssh-and-linux-verification.png)
+Successful SSH session and command results (evidence reviewed privately)
 
 ## Cleanup and proof
 
@@ -105,11 +105,11 @@ cat /etc/os-release
 
 | Resource or check | Final observed state | Evidence |
 | --- | --- | --- |
-| Encrypted root disk configuration | 8 GiB gp3; encryption enabled; Delete on termination Yes | [Storage configuration](images/01-encrypted-root-volume.png) |
+| Encrypted root disk configuration | 8 GiB gp3; encryption enabled; Delete on termination Yes | Storage configuration (evidence reviewed privately) |
 | EC2 instance | Terminated | Console screenshot reviewed during the session |
-| Root EBS volume | No matching volumes on the independent EBS Volumes page | [Volume search](images/03-ebs-volume-deleted.png) |
+| Root EBS volume | No matching volumes on the independent EBS Volumes page | Volume search (evidence reviewed privately) |
 | Lab security group | Deleted; default security group remained | Success banner and refreshed list reviewed during the session |
-| EC2 key-pair registration | Deleted; list empty | [Key-pair cleanup](images/04-key-pair-deleted.png) |
+| EC2 key-pair registration | Deleted; list empty | Key-pair cleanup (evidence reviewed privately) |
 
 The empty Storage tab on a terminated instance only showed that no disks were attached. Checking the separate Volumes page provided additional evidence that the root disk itself was gone. EBS deletion at instance termination is controlled by each volume's `DeleteOnTermination` setting. [AWS EBS persistence documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/preserving-volumes-on-termination.html)
 

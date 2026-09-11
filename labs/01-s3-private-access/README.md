@@ -41,12 +41,12 @@ I watched the S3 demonstration in AWS Educate Introduction to Cloud 101, Module 
 
 | Check | Observed result | Evidence |
 | --- | --- | --- |
-| Upload | One object, 38 bytes; zero failures | [Upload confirmation](images/01-object-uploaded.png) |
-| Ordinary URL | `AccessDenied` | [Browser result](images/02-access-denied.png) |
+| Upload | One object, 38 bytes; zero failures | Upload confirmation (evidence reviewed privately) |
+| Ordinary URL | `AccessDenied` | Browser result (evidence reviewed privately) |
 | Presigned URL | Text displayed in Chrome Incognito | Reviewed during the session; the screenshot is excluded because its address bar contains the signed URL |
-| Permissions after sharing | Public access blocked; no bucket policy | [Permissions](images/03-private-permissions.png) |
+| Permissions after sharing | Public access blocked; no bucket policy | Permissions (evidence reviewed privately) |
 | Object cleanup | One object deleted; zero failures | Console confirmation reviewed during the session |
-| Bucket cleanup | Successful deletion; zero buckets displayed | [Bucket deleted](images/04-bucket-deleted.png) |
+| Bucket cleanup | Successful deletion; zero buckets displayed | Bucket deleted (evidence reviewed privately) |
 
 The exact presigned URL duration and its eventual expiration were not independently verified.
 
