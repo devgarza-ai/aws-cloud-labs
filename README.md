@@ -1,32 +1,25 @@
 # AWS Cloud Labs
 
-My hands-on AWS learning journal from AWS Educate **Introduction to Cloud 101 — Module 4: AWS Core Services**. I build each exercise in my own account, verify the result, document what actually happened, and remove temporary resources.
+A portfolio of hands-on AWS projects covering storage, compute, networking, databases, identity, serverless architecture, observability, and layered network security. Each project was built in a personal AWS account, validated against a defined objective, and cleaned up after verification.
 
-## Completed labs
+## Projects
 
-| Lab | Skills practiced | Final state |
-| --- | --- | --- |
-| [01 — S3 private access](labs/01-s3-private-access/README.md) | Private objects, access denial, presigned access | Object and bucket deleted |
-| [02 — EC2 launch and SSH](labs/02-ec2-launch-and-ssh/README.md) | Linux, encrypted EBS, SSH troubleshooting | Instance and related lab resources removed |
-| [03 — VPC network foundations](labs/03-vpc-network-foundations/README.md) | CIDR, two-AZ subnets, routing, S3 endpoint, EC2 validation | Instance, EBS, VPC, and nine related resources removed |
-| [04 — RDS MySQL](labs/04-rds-mysql-managed-database/README.md) | Managed database creation, inspection, deletion | Database, backups, subnet group, and monitoring role removed |
-| [05 — IAM S3 read-only](labs/05-iam-s3-read-only/README.md) | User/group policy inheritance and access testing | Lab user and group deleted |
-| [06 — Serverless observability](labs/06-serverless-event-observability/README.md) | Lambda, DynamoDB Streams, CloudWatch, SNS | All lab resources removed |
+| Lab | Project | AWS services | Engineering focus | Final state |
+| ---: | --- | --- | --- | --- |
+| 01 | [Private S3 object access](labs/01-s3-private-access/README.md) | Amazon S3 | Private-by-default storage and presigned access | Object and bucket deleted |
+| 02 | [EC2 launch and SSH](labs/02-ec2-launch-and-ssh/README.md) | Amazon EC2, Amazon EBS, VPC security groups | Linux provisioning, encrypted storage, SSH troubleshooting | Instance and related lab resources removed |
+| 03 | [VPC network foundations](labs/03-vpc-network-foundations/README.md) | Amazon VPC, Amazon EC2, Amazon S3 | Multi-AZ subnetting, routing, gateway endpoints | Validation instance and custom VPC removed |
+| 04 | [RDS for MySQL](labs/04-rds-mysql-managed-database/README.md) | Amazon RDS | Managed database provisioning and lifecycle controls | Database and related resources removed |
+| 05 | [IAM S3 read-only access](labs/05-iam-s3-read-only/README.md) | AWS IAM, Amazon S3 | Group-based permissions and access verification | Lab identities removed |
+| 06 | [Serverless event observability](labs/06-serverless-event-observability/README.md) | AWS Lambda, Amazon DynamoDB, Amazon CloudWatch, Amazon SNS | Event-driven processing, logs, metrics, alarms, notifications | All lab resources removed |
+| 07 | [Multi-AZ VPC security architecture](labs/07-multi-az-vpc-security/README.md) | Amazon VPC | Public/private routing, tiered security groups, custom network ACLs | Custom VPC and dependent resources removed |
 
-Labs 01–02 were completed September 8, 2026; Labs 03–06 on September 10, 2026. Regional resources used **US East (Ohio), `us-east-2`**; IAM is global.
+## Documentation standard
 
-## Records
-
-- [September 8 session](sessions/2026-09-08.md)
-- [September 10 session](sessions/2026-09-10.md)
-- [Evidence index](EVIDENCE.md)
-
-This public repository contains hands-on work only. Course grades, assessments, badges, certificates, emails, and career-program pages are excluded.
+Each lab documents the project objective, architecture or configuration, implementation decisions, validation results, and cleanup state. Claims are limited to actions that were directly verified; design-only components and untested behaviors are identified explicitly.
 
 ## Security and privacy
 
-Console screenshots are reviewed during each session but kept outside this public repository unless one becomes essential to understanding a lab. Private keys, passwords, email addresses, signed URLs, account details, and temporary endpoints are excluded. Every lab resource documented here was deleted after verification.
+Credentials, private keys, signed URLs, account identifiers, email addresses, and temporary service endpoints are excluded. Console evidence was reviewed during implementation, while the public repository retains only the technical result needed to explain each project.
 
-## Next
-
-Resume **AWS Cloud Practitioner Essentials Module 6 — Storage** after a short Module 5 networking recall.
+Labs 01–06 used US East (Ohio), `us-east-2`, for regional resources. Lab 07 used US East (N. Virginia), `us-east-1`. IAM resources are global.

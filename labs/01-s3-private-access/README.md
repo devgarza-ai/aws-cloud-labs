@@ -1,71 +1,58 @@
-# Lab 01 — Amazon S3 Private Object Access
+# Lab 01 — Private Amazon S3 Object Access
 
-**Author:** DevGarza  
-**Date:** September 8, 2026 (Pacific)  
-**Method:** Guided practice in my own AWS account using the AWS Management Console  
-**Status:** Completed; lab object and bucket deleted
+## Overview
 
-## Goal and learning context
+This project demonstrates private-by-default object storage and controlled temporary sharing. An S3 object remained inaccessible through its ordinary URL while a presigned URL provided scoped, time-limited access without changing the bucket's public-access settings.
 
-Create my first S3 bucket, upload a text object, compare ordinary URL access with presigned URL access, verify permissions, and remove the resources.
+## Project profile
 
-I watched the S3 demonstration in AWS Educate Introduction to Cloud 101, Module 4: AWS Core Services. The instructor demonstrated public sharing through a bucket policy. My hands-on exercise used a private bucket and a presigned URL for temporary access.
-
-## Configuration
-
-| Setting | Value used |
+| Item | Configuration |
 | --- | --- |
-| Bucket | `devgarza-bucket-lab` |
 | Region | US East (Ohio), `us-east-2` |
+| Service | Amazon S3 |
 | Bucket type | General purpose |
 | Object Ownership | Bucket owner enforced; ACLs disabled |
-| Block all public access | On |
-| Bucket policy | None |
-| Default encryption | Amazon S3 managed keys, SSE-S3 |
+| Public access | Block Public Access enabled; no bucket policy |
+| Encryption | SSE-S3 |
 | Versioning | Disabled |
-| Object key | `s3-practice.txt` |
-| Object size | 38 bytes |
 | Storage class | S3 Standard |
 
-## Work completed
+## Implementation
 
-1. Created the bucket and confirmed that it initially contained zero objects.
-2. Uploaded a text file from my computer. The console reported one successful upload and zero failures.
-3. Opened the object's ordinary HTTPS URL in a browser. The response was `AccessDenied`.
-4. Generated a presigned URL through the S3 console and opened it in Chrome Incognito. The file's text displayed successfully.
-5. Rechecked Permissions: Block all public access remained On, with no bucket policy.
-6. Deleted the object. The console confirmed one successful deletion, zero failures, and an empty bucket.
-7. Deleted the bucket and verified the successful deletion message and empty general-purpose bucket list.
+1. Created a private S3 bucket and confirmed that it contained no objects.
+2. Uploaded a 38-byte text object named `s3-practice.txt`.
+3. Requested the object's ordinary HTTPS URL and received `AccessDenied`.
+4. Generated a presigned URL and confirmed that the object opened in a private browser window.
+5. Rechecked the bucket permissions to confirm that Block Public Access remained enabled and no bucket policy had been added.
 
-## Verification
+## Validation
 
-| Check | Observed result | Evidence |
-| --- | --- | --- |
-| Upload | One object, 38 bytes; zero failures | Upload confirmation (evidence reviewed privately) |
-| Ordinary URL | `AccessDenied` | Browser result (evidence reviewed privately) |
-| Presigned URL | Text displayed in Chrome Incognito | Reviewed during the session; the screenshot is excluded because its address bar contains the signed URL |
-| Permissions after sharing | Public access blocked; no bucket policy | Permissions (evidence reviewed privately) |
-| Object cleanup | One object deleted; zero failures | Console confirmation reviewed during the session |
-| Bucket cleanup | Successful deletion; zero buckets displayed | Bucket deleted (evidence reviewed privately) |
+| Check | Result |
+| --- | --- |
+| Object upload | One object uploaded successfully with zero failures |
+| Ordinary object URL | Access denied under the private bucket configuration |
+| Presigned URL | Object content loaded successfully |
+| Bucket permissions after sharing | Block Public Access remained enabled; bucket policy remained absent |
 
-The exact presigned URL duration and its eventual expiration were not independently verified.
+The test confirmed successful presigned access, but it did not independently observe the URL's eventual expiration.
 
-## What I learned
+## Security decisions
 
-- An S3 bucket holds objects. The object key for my file was `s3-practice.txt`.
-- Knowing an object's URL does not grant permission to read it. The ordinary request was denied under the private configuration used in this lab.
-- A presigned URL gives time-limited access using the permissions of the identity that generates it. In this exercise, it allowed the object to be read while the bucket's public-access block remained enabled. [AWS presigned URL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html)
-- Uploading a file, verifying access, and cleaning up the resources are all part of completing a lab.
+- ACLs were disabled through bucket-owner-enforced Object Ownership.
+- The bucket was never made public.
+- Temporary access was granted with a presigned URL instead of a public bucket policy.
+- The signed URL itself was treated as sensitive and was not retained in the repository.
 
-## Reflection
+## Cleanup
 
-This was my first hands-on S3 bucket in my own AWS account. Seeing the ordinary URL fail and the presigned URL succeed made the difference between an address and authorization concrete. I also practiced checking the final state after deleting both the object and the bucket.
+The object was deleted first, followed by the bucket. The final S3 bucket list contained no lab bucket.
 
-## Review questions
+## Key takeaways
 
-1. Why did the ordinary object URL return `AccessDenied`?
-2. What authorization did the presigned URL provide?
-3. Which screenshot shows that the bucket still blocked public access after sharing?
-4. Why did I empty the bucket before deleting it?
+- An object URL identifies a resource; it does not grant permission to read it.
+- Presigned URLs provide temporary access using the permissions of the signing identity.
+- Access validation should include both the expected denial path and the authorized path.
 
-[Back to lab index](../../README.md)
+[AWS documentation: Sharing objects with presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html)
+
+[Back to project index](../../README.md)
