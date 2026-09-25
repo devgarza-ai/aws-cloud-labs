@@ -13,6 +13,7 @@ A portfolio of hands-on AWS projects covering storage, compute, networking, data
 | 05 | [IAM S3 read-only access](labs/05-iam-s3-read-only/README.md) | AWS IAM, Amazon S3 | Group-based permissions and access verification | Lab identities removed |
 | 06 | [Serverless event observability](labs/06-serverless-event-observability/README.md) | AWS Lambda, Amazon DynamoDB, Amazon CloudWatch, Amazon SNS | Event-driven processing, logs, metrics, alarms, notifications | All lab resources removed |
 | 07 | [Multi-AZ VPC security architecture](labs/07-multi-az-vpc-security/README.md) | Amazon VPC | Public/private routing, tiered security groups, custom network ACLs | Custom VPC and dependent resources removed |
+| 08 | [S3 management-event investigation](labs/08-s3-cloudtrail-investigation/README.md) | Amazon S3, AWS CloudTrail, AWS IAM | Management-event auditing, identity verification, account hardening | Bucket deleted; IAM controls verified and simplified |
 
 ## Documentation standard
 
@@ -22,4 +23,4 @@ Each lab documents the project objective, architecture or configuration, impleme
 
 Credentials, private keys, signed URLs, account identifiers, email addresses, and temporary service endpoints are excluded. Console evidence was reviewed during implementation, while the public repository retains only the technical result needed to explain each project.
 
-Labs 01–06 used US East (Ohio), `us-east-2`, for regional resources. Lab 07 used US East (N. Virginia), `us-east-1`. IAM resources are global.
+Labs 01–06 and 08 used US East (Ohio), `us-east-2`, for regional resources. Lab 07 used US East (N. Virginia), `us-east-1`. IAM resources are global.
